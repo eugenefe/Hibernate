@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012. 12. 20 ???? 5:18:49 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.eugene.element.Position" table="POSITION">
+        <id name="id" type="string">
+            <column name="ID" length="30" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="NAME" length="50" />
+        </property>
+        <property name="isOpen" type="java.lang.Character">
+            <column name="IS_OPEN" length="1" />
+        </property>
+        <property name="prodId" type="string">
+            <column name="PROD_ID" length="30" not-null="true" />
+        </property>
+        <property name="ownerId" type="string">
+            <column name="OWNER_ID" length="30" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

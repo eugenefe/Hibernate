@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012. 12. 20 ???? 5:18:49 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.eugene.element.BaseDate" table="BASE_DATE">
+        <id name="bssd" type="string">
+            <column name="BSSD" length="8" />
+            <generator class="assigned" />
+        </id>
+        <property name="prevBssd" type="string">
+            <column name="PREV_BSSD" length="8" />
+        </property>
+        <property name="nextBssd" type="java.lang.Integer">
+            <column name="NEXT_BSSD" precision="8" scale="0" />
+        </property>
+        <property name="eomBssd" type="string">
+            <column name="EOM_BSSD" length="8" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012. 12. 20 ???? 5:18:49 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.eugene.element.PositionDetail" table="POSITION_DETAIL">
+        <composite-id name="id" class="com.eugene.element.PositionDetailId">
+            <key-property name="bssd" type="string">
+                <column name="BSSD" length="8" />
+            </key-property>
+            <key-property name="id" type="string">
+                <column name="ID" length="30" />
+            </key-property>
+        </composite-id>
+        <property name="holingQty" type="big_decimal">
+            <column name="HOLING_QTY" precision="20" scale="4" />
+        </property>
+        <property name="prodId" type="string">
+            <column name="PROD_ID" length="30" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
