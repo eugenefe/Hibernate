@@ -1,10 +1,17 @@
 package com.eugene.element;
 
-// Generated 2012. 12. 20 오후 5:18:49 by Hibernate Tools 3.4.0.CR1
+// Generated 2012. 12. 31 오후 2:16:29 by Hibernate Tools 3.4.0.CR1
 
+import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -15,37 +22,59 @@ import javax.persistence.Table;
 public class Position implements java.io.Serializable {
 
 	private String id;
+	private Dealer dealer;
+	private Product product;
 	private String name;
-	private Character isOpen;
-	private String prodId;
-	private String ownerId;
+	private BigDecimal posAmt;
+	private Set<PositionHis> positionHises = new HashSet<PositionHis>(0);
 
 	public Position() {
 	}
 
-	public Position(String id, String prodId, String ownerId) {
+	public Position(String id, Dealer dealer, Product product) {
 		this.id = id;
-		this.prodId = prodId;
-		this.ownerId = ownerId;
+		this.dealer = dealer;
+		this.product = product;
 	}
 
-	public Position(String id, String name, Character isOpen, String prodId,
-			String ownerId) {
+	public Position(String id, Dealer dealer, Product product, String name, BigDecimal posAmt,
+			Set<PositionHis> positionHises) {
 		this.id = id;
+		this.dealer = dealer;
+		this.product = product;
 		this.name = name;
-		this.isOpen = isOpen;
-		this.prodId = prodId;
-		this.ownerId = ownerId;
+		this.posAmt = posAmt;
+		this.positionHises = positionHises;
 	}
 
 	@Id
-	@Column(name = "ID", unique = true, nullable = false, length = 30)
+	@Column(name = "ID", unique = true, nullable = false, length = 50)
 	public String getId() {
 		return this.id;
 	}
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "DEALER_ID", nullable = false)
+	public Dealer getDealer() {
+		return this.dealer;
+	}
+
+	public void setDealer(Dealer dealer) {
+		this.dealer = dealer;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "PRODUCT_ID", nullable = false)
+	public Product getProduct() {
+		return this.product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	@Column(name = "NAME", length = 50)
@@ -57,31 +86,22 @@ public class Position implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@Column(name = "IS_OPEN", length = 1)
-	public Character getIsOpen() {
-		return this.isOpen;
+	@Column(name = "POS_AMT", precision = 20)
+	public BigDecimal getPosAmt() {
+		return this.posAmt;
 	}
 
-	public void setIsOpen(Character isOpen) {
-		this.isOpen = isOpen;
+	public void setPosAmt(BigDecimal posAmt) {
+		this.posAmt = posAmt;
 	}
 
-	@Column(name = "PROD_ID", nullable = false, length = 30)
-	public String getProdId() {
-		return this.prodId;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "position")
+	public Set<PositionHis> getPositionHises() {
+		return this.positionHises;
 	}
 
-	public void setProdId(String prodId) {
-		this.prodId = prodId;
-	}
-
-	@Column(name = "OWNER_ID", nullable = false, length = 30)
-	public String getOwnerId() {
-		return this.ownerId;
-	}
-
-	public void setOwnerId(String ownerId) {
-		this.ownerId = ownerId;
+	public void setPositionHises(Set<PositionHis> positionHises) {
+		this.positionHises = positionHises;
 	}
 
 }

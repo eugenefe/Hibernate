@@ -2,11 +2,17 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
-  <table-filter match-name="BASE_DATE"/>
-  <table-filter match-name="DEALER"/>
-  <table-filter match-name="PORTFOLIO"/>
-  <table-filter match-name="PORTFOLIO_DETAIL"/>
-  <table-filter match-name="POSITION"/>
-  <table-filter match-name="POSITION_DETAIL"/>
-  <table-filter match-name="PRODUCT"/>
+	<table-filter match-name="BASE_DATE"></table-filter>
+	<table-filter match-name="DEALER"></table-filter>
+	<table-filter match-name="LGD_SEG"></table-filter>
+	<table-filter match-name="PD_SEG"></table-filter>
+	<table-filter match-name="PORTFOLIO"></table-filter>
+	<table-filter match-name="PORTFOLIO_DETAIL"></table-filter>
+	<table-filter match-name="PORTFOLIO_HIS"></table-filter>
+	<table-filter match-name="PORTFOLIO_LOSS"></table-filter>
+	<table-filter match-name="POSITION"></table-filter>
+	<table-filter match-name="POSITION_DETAIL"></table-filter>
+	<table-filter match-name="POSITION_HIS"></table-filter>
+	<table-filter match-name="POSITION_LOSS"></table-filter>
+	<table-filter match-name="PRODUCT"></table-filter>
 </hibernate-reverse-engineering>

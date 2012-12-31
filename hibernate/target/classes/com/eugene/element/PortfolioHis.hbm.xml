@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012. 12. 31 ???? 2:16:29 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.eugene.element.PortfolioHis" table="PORTFOLIO_HIS">
+        <composite-id name="id" class="com.eugene.element.PortfolioHisId">
+            <key-property name="bssd" type="string">
+                <column name="BSSD" length="8" />
+            </key-property>
+            <key-property name="portfolioId" type="string">
+                <column name="PORTFOLIO_ID" length="50" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="baseDate" class="com.eugene.element.BaseDate" update="false" insert="false" fetch="select">
+            <column name="BSSD" length="8" not-null="true">
+                <comment>&#177;&#226;&#193;&#216;&#192;&#207;&#192;&#218;</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="portfolio" class="com.eugene.element.Portfolio" update="false" insert="false" fetch="select">
+            <column name="PORTFOLIO_ID" length="50" not-null="true" />
+        </many-to-one>
+        <property name="portAmt" type="big_decimal">
+            <column name="PORT_AMT" precision="20" />
+        </property>
+        <set name="portfolioLosses" table="PORTFOLIO_LOSS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="BSSD" length="8" not-null="true">
+                    <comment>&#177;&#226;&#193;&#216;&#192;&#207;&#192;&#218;</comment>
+                </column>
+                <column name="PORTFOLIO_ID" length="50" not-null="true" />
+            </key>
+            <one-to-many class="com.eugene.element.PortfolioLoss" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,10 +1,14 @@
 package com.eugene.element;
 
-// Generated 2012. 12. 20 오후 5:18:49 by Hibernate Tools 3.4.0.CR1
+// Generated 2012. 12. 31 오후 2:16:29 by Hibernate Tools 3.4.0.CR1
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -13,12 +17,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "BASE_DATE")
 public class BaseDate implements java.io.Serializable {
-	private static final long serialVersionUID = 1L;
-	
+
 	private String bssd;
 	private String prevBssd;
-	private Integer nextBssd;
+	private String nextBssd;
 	private String eomBssd;
+	private Set<PositionHis> positionHises = new HashSet<PositionHis>(0);
+	private Set<PortfolioHis> portfolioHises = new HashSet<PortfolioHis>(0);
 
 	public BaseDate() {
 	}
@@ -27,12 +32,14 @@ public class BaseDate implements java.io.Serializable {
 		this.bssd = bssd;
 	}
 
-	public BaseDate(String bssd, String prevBssd, Integer nextBssd,
-			String eomBssd) {
+	public BaseDate(String bssd, String prevBssd, String nextBssd, String eomBssd,
+			Set<PositionHis> positionHises, Set<PortfolioHis> portfolioHises) {
 		this.bssd = bssd;
 		this.prevBssd = prevBssd;
 		this.nextBssd = nextBssd;
 		this.eomBssd = eomBssd;
+		this.positionHises = positionHises;
+		this.portfolioHises = portfolioHises;
 	}
 
 	@Id
@@ -54,12 +61,12 @@ public class BaseDate implements java.io.Serializable {
 		this.prevBssd = prevBssd;
 	}
 
-	@Column(name = "NEXT_BSSD", precision = 8, scale = 0)
-	public Integer getNextBssd() {
+	@Column(name = "NEXT_BSSD", length = 8)
+	public String getNextBssd() {
 		return this.nextBssd;
 	}
 
-	public void setNextBssd(Integer nextBssd) {
+	public void setNextBssd(String nextBssd) {
 		this.nextBssd = nextBssd;
 	}
 
@@ -70,6 +77,24 @@ public class BaseDate implements java.io.Serializable {
 
 	public void setEomBssd(String eomBssd) {
 		this.eomBssd = eomBssd;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "baseDate")
+	public Set<PositionHis> getPositionHises() {
+		return this.positionHises;
+	}
+
+	public void setPositionHises(Set<PositionHis> positionHises) {
+		this.positionHises = positionHises;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "baseDate")
+	public Set<PortfolioHis> getPortfolioHises() {
+		return this.portfolioHises;
+	}
+
+	public void setPortfolioHises(Set<PortfolioHis> portfolioHises) {
+		this.portfolioHises = portfolioHises;
 	}
 
 }

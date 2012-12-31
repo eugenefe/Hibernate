@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012. 12. 31 ???? 2:16:29 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.eugene.element.PositionLoss" table="POSITION_LOSS">
+        <composite-id name="id" class="com.eugene.element.PositionLossId">
+            <key-property name="bssd" type="string">
+                <column name="BSSD" length="8" />
+            </key-property>
+            <key-property name="positionId" type="string">
+                <column name="POSITION_ID" length="50" />
+            </key-property>
+            <key-property name="lossNo" type="string">
+                <column name="LOSS_NO" length="20" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="positionHis" class="com.eugene.element.PositionHis" update="false" insert="false" fetch="select">
+            <column name="BSSD" length="8" not-null="true">
+                <comment>&#177;&#226;&#193;&#216;&#192;&#207;&#192;&#218;</comment>
+            </column>
+            <column name="POSITION_ID" length="50" not-null="true" />
+        </many-to-one>
+        <property name="lossAmt" type="big_decimal">
+            <column name="LOSS_AMT" precision="20" />
+        </property>
+        <property name="lostProb" type="big_decimal">
+            <column name="LOST_PROB" precision="10" scale="8" />
+        </property>
+    </class>
+</hibernate-mapping>

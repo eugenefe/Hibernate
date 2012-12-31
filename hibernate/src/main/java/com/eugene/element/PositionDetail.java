@@ -1,6 +1,6 @@
 package com.eugene.element;
 
-// Generated 2012. 12. 20 오후 5:18:49 by Hibernate Tools 3.4.0.CR1
+// Generated 2012. 12. 31 오후 2:16:29 by Hibernate Tools 3.4.0.CR1
 
 import java.math.BigDecimal;
 import javax.persistence.AttributeOverride;
@@ -29,8 +29,7 @@ public class PositionDetail implements java.io.Serializable {
 		this.prodId = prodId;
 	}
 
-	public PositionDetail(PositionDetailId id, BigDecimal holingQty,
-			String prodId) {
+	public PositionDetail(PositionDetailId id, BigDecimal holingQty, String prodId) {
 		this.id = id;
 		this.holingQty = holingQty;
 		this.prodId = prodId;

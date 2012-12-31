@@ -1,10 +1,14 @@
 package com.eugene.element;
 
-// Generated 2012. 12. 20 오후 5:18:49 by Hibernate Tools 3.4.0.CR1
+// Generated 2012. 12. 31 오후 2:16:29 by Hibernate Tools 3.4.0.CR1
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -17,6 +21,7 @@ public class Product implements java.io.Serializable {
 	private String id;
 	private String name;
 	private String type;
+	private Set<Position> positions = new HashSet<Position>(0);
 
 	public Product() {
 	}
@@ -25,14 +30,15 @@ public class Product implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Product(String id, String name, String type) {
+	public Product(String id, String name, String type, Set<Position> positions) {
 		this.id = id;
 		this.name = name;
 		this.type = type;
+		this.positions = positions;
 	}
 
 	@Id
-	@Column(name = "ID", unique = true, nullable = false, length = 30)
+	@Column(name = "ID", unique = true, nullable = false, length = 50)
 	public String getId() {
 		return this.id;
 	}
@@ -50,13 +56,22 @@ public class Product implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@Column(name = "TYPE", length = 30)
+	@Column(name = "TYPE", length = 10)
 	public String getType() {
 		return this.type;
 	}
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
+	public Set<Position> getPositions() {
+		return this.positions;
+	}
+
+	public void setPositions(Set<Position> positions) {
+		this.positions = positions;
 	}
 
 }

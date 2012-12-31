@@ -1,6 +1,6 @@
 package com.eugene.element;
 
-// Generated 2012. 12. 20 오후 5:18:49 by Hibernate Tools 3.4.0.CR1
+// Generated 2012. 12. 31 오후 2:16:29 by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -50,18 +50,15 @@ public class PositionDetailId implements java.io.Serializable {
 		PositionDetailId castOther = (PositionDetailId) other;
 
 		return ((this.getBssd() == castOther.getBssd()) || (this.getBssd() != null
-				&& castOther.getBssd() != null && this.getBssd().equals(
-				castOther.getBssd())))
+				&& castOther.getBssd() != null && this.getBssd().equals(castOther.getBssd())))
 				&& ((this.getId() == castOther.getId()) || (this.getId() != null
-						&& castOther.getId() != null && this.getId().equals(
-						castOther.getId())));
+						&& castOther.getId() != null && this.getId().equals(castOther.getId())));
 	}
 
 	public int hashCode() {
 		int result = 17;
 
-		result = 37 * result
-				+ (getBssd() == null ? 0 : this.getBssd().hashCode());
+		result = 37 * result + (getBssd() == null ? 0 : this.getBssd().hashCode());
 		result = 37 * result + (getId() == null ? 0 : this.getId().hashCode());
 		return result;
 	}
