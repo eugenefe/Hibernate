@@ -1,6 +1,6 @@
 package com.eugene.element;
 
-// Generated 2012. 12. 20 오후 5:18:49 by Hibernate Tools 3.4.0.CR1
+// Generated 2012. 12. 31 오후 6:07:13 by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -28,8 +28,8 @@ public class PortfolioDetail implements java.io.Serializable {
 	@EmbeddedId
 	@AttributeOverrides({
 			@AttributeOverride(name = "bssd", column = @Column(name = "BSSD", nullable = false, length = 8)),
-			@AttributeOverride(name = "portfolioId", column = @Column(name = "PORTFOLIO_ID", nullable = false, length = 30)),
-			@AttributeOverride(name = "positionId", column = @Column(name = "POSITION_ID", nullable = false, length = 30)) })
+			@AttributeOverride(name = "portfolioId", column = @Column(name = "PORTFOLIO_ID", nullable = false, length = 50)),
+			@AttributeOverride(name = "positionId", column = @Column(name = "POSITION_ID", nullable = false, length = 100)) })
 	public PortfolioDetailId getId() {
 		return this.id;
 	}

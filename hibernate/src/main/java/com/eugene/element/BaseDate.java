@@ -1,14 +1,10 @@
 package com.eugene.element;
 
-// Generated 2012. 12. 31 오후 2:16:29 by Hibernate Tools 3.4.0.CR1
+// Generated 2012. 12. 31 오후 6:19:47 by Hibernate Tools 3.4.0.CR1
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -22,8 +18,6 @@ public class BaseDate implements java.io.Serializable {
 	private String prevBssd;
 	private String nextBssd;
 	private String eomBssd;
-	private Set<PositionHis> positionHises = new HashSet<PositionHis>(0);
-	private Set<PortfolioHis> portfolioHises = new HashSet<PortfolioHis>(0);
 
 	public BaseDate() {
 	}
@@ -32,14 +26,11 @@ public class BaseDate implements java.io.Serializable {
 		this.bssd = bssd;
 	}
 
-	public BaseDate(String bssd, String prevBssd, String nextBssd, String eomBssd,
-			Set<PositionHis> positionHises, Set<PortfolioHis> portfolioHises) {
+	public BaseDate(String bssd, String prevBssd, String nextBssd, String eomBssd) {
 		this.bssd = bssd;
 		this.prevBssd = prevBssd;
 		this.nextBssd = nextBssd;
 		this.eomBssd = eomBssd;
-		this.positionHises = positionHises;
-		this.portfolioHises = portfolioHises;
 	}
 
 	@Id
@@ -77,24 +68,6 @@ public class BaseDate implements java.io.Serializable {
 
 	public void setEomBssd(String eomBssd) {
 		this.eomBssd = eomBssd;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "baseDate")
-	public Set<PositionHis> getPositionHises() {
-		return this.positionHises;
-	}
-
-	public void setPositionHises(Set<PositionHis> positionHises) {
-		this.positionHises = positionHises;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "baseDate")
-	public Set<PortfolioHis> getPortfolioHises() {
-		return this.portfolioHises;
-	}
-
-	public void setPortfolioHises(Set<PortfolioHis> portfolioHises) {
-		this.portfolioHises = portfolioHises;
 	}
 
 }

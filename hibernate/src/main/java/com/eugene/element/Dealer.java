@@ -1,6 +1,6 @@
 package com.eugene.element;
 
-// Generated 2012. 12. 31 오후 2:16:29 by Hibernate Tools 3.4.0.CR1
+// Generated 2012. 12. 31 오후 6:19:47 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;

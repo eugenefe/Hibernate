@@ -1,6 +1,6 @@
 package com.eugene.element;
 
-// Generated 2012. 12. 31 오후 2:16:29 by Hibernate Tools 3.4.0.CR1
+// Generated 2012. 12. 31 오후 6:19:47 by Hibernate Tools 3.4.0.CR1
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -22,33 +22,38 @@ import javax.persistence.Table;
 public class Position implements java.io.Serializable {
 
 	private String id;
+	private Obligor obligor;
 	private Dealer dealer;
 	private Product product;
+	private AccountMst accountMst;
 	private String name;
 	private BigDecimal posAmt;
+	private String colCd;
 	private Set<PositionHis> positionHises = new HashSet<PositionHis>(0);
 
 	public Position() {
 	}
 
-	public Position(String id, Dealer dealer, Product product) {
+	public Position(String id) {
 		this.id = id;
-		this.dealer = dealer;
-		this.product = product;
 	}
 
-	public Position(String id, Dealer dealer, Product product, String name, BigDecimal posAmt,
+	public Position(String id, Obligor obligor, Dealer dealer, Product product,
+			AccountMst accountMst, String name, BigDecimal posAmt, String colCd,
 			Set<PositionHis> positionHises) {
 		this.id = id;
+		this.obligor = obligor;
 		this.dealer = dealer;
 		this.product = product;
+		this.accountMst = accountMst;
 		this.name = name;
 		this.posAmt = posAmt;
+		this.colCd = colCd;
 		this.positionHises = positionHises;
 	}
 
 	@Id
-	@Column(name = "ID", unique = true, nullable = false, length = 50)
+	@Column(name = "ID", unique = true, nullable = false, length = 100)
 	public String getId() {
 		return this.id;
 	}
@@ -58,7 +63,17 @@ public class Position implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "DEALER_ID", nullable = false)
+	@JoinColumn(name = "OBLIGOR_ID")
+	public Obligor getObligor() {
+		return this.obligor;
+	}
+
+	public void setObligor(Obligor obligor) {
+		this.obligor = obligor;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "DEALER_ID")
 	public Dealer getDealer() {
 		return this.dealer;
 	}
@@ -68,13 +83,23 @@ public class Position implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "PRODUCT_ID", nullable = false)
+	@JoinColumn(name = "PRODUCT_ID")
 	public Product getProduct() {
 		return this.product;
 	}
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ACCOUNT_ID")
+	public AccountMst getAccountMst() {
+		return this.accountMst;
+	}
+
+	public void setAccountMst(AccountMst accountMst) {
+		this.accountMst = accountMst;
 	}
 
 	@Column(name = "NAME", length = 50)
@@ -93,6 +118,15 @@ public class Position implements java.io.Serializable {
 
 	public void setPosAmt(BigDecimal posAmt) {
 		this.posAmt = posAmt;
+	}
+
+	@Column(name = "COL_CD", length = 20)
+	public String getColCd() {
+		return this.colCd;
+	}
+
+	public void setColCd(String colCd) {
+		this.colCd = colCd;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "position")

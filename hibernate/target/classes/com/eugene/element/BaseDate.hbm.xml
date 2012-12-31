@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2012. 12. 31 ???? 2:16:29 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2012. 12. 31 ???? 6:19:47 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.eugene.element.BaseDate" table="BASE_DATE">
         <id name="bssd" type="string">
@@ -9,36 +9,13 @@
             <generator class="assigned" />
         </id>
         <property name="prevBssd" type="string">
-            <column name="PREV_BSSD" length="8">
-                <comment>&#193;&#247;&#192;&#252; &#177;&#226;&#193;&#216;&#192;&#207;&#192;&#218;(&#191;&#181;&#190;&#247;&#192;&#207;&#192;&#218;)</comment>
-            </column>
+            <column name="PREV_BSSD" length="8" />
         </property>
         <property name="nextBssd" type="string">
-            <column name="NEXT_BSSD" length="8">
-                <comment>&#180;&#217;&#192;&#189; &#177;&#226;&#193;&#216;&#192;&#207;&#192;&#218;(&#191;&#181;&#190;&#247;&#192;&#207;&#192;&#218;)</comment>
-            </column>
+            <column name="NEXT_BSSD" length="8" />
         </property>
         <property name="eomBssd" type="string">
-            <column name="EOM_BSSD" length="8">
-                <comment>&#199;&#216;&#180;&#231;&#192;&#207;&#192;&#199; &#191;&#249;&#184;&#187;
-                &#177;&#226;&#193;&#216;&#192;&#207;&#192;&#218;(&#191;&#181;&#190;&#247;&#192;&#207;&#192;&#218;)</comment>
-            </column>
+            <column name="EOM_BSSD" length="8" />
         </property>
-        <set name="positionHises" table="POSITION_HIS" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="BSSD" length="8" not-null="true">
-                    <comment>&#177;&#226;&#193;&#216;&#192;&#207;&#192;&#218;</comment>
-                </column>
-            </key>
-            <one-to-many class="com.eugene.element.PositionHis" />
-        </set>
-        <set name="portfolioHises" table="PORTFOLIO_HIS" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="BSSD" length="8" not-null="true">
-                    <comment>&#177;&#226;&#193;&#216;&#192;&#207;&#192;&#218;</comment>
-                </column>
-            </key>
-            <one-to-many class="com.eugene.element.PortfolioHis" />
-        </set>
     </class>
 </hibernate-mapping>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2012. 12. 31 ???? 2:16:29 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2012. 12. 31 ???? 6:19:47 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.eugene.element.Portfolio" table="PORTFOLIO">
         <id name="id" type="string">
@@ -29,12 +29,6 @@
         <property name="level5" type="string">
             <column name="LEVEL5" length="20" />
         </property>
-        <set name="portfolioHises" table="PORTFOLIO_HIS" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="PORTFOLIO_ID" length="50" not-null="true" />
-            </key>
-            <one-to-many class="com.eugene.element.PortfolioHis" />
-        </set>
         <set name="portfolios" table="PORTFOLIO" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="PARENT_PORT_ID" length="50" />
@@ -46,10 +40,14 @@
                 <column name="PORTFOLIO_ID" length="50" not-null="true" />
             </key>
             <many-to-many entity-name="com.eugene.element.PositionHis">
-                <column name="BSSD" length="8" not-null="true">
-                    <comment>&#177;&#226;&#193;&#216;&#192;&#207;&#192;&#218;</comment>
-                </column>
+                <column name="BSSD" length="8" not-null="true" />
             </many-to-many>
+        </set>
+        <set name="portfolioHises" table="PORTFOLIO_HIS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PORTFOLIO_ID" length="50" not-null="true" />
+            </key>
+            <one-to-many class="com.eugene.element.PortfolioHis" />
         </set>
     </class>
 </hibernate-mapping>

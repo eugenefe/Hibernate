@@ -1,6 +1,6 @@
 package com.eugene.element;
 
-// Generated 2012. 12. 31 오후 2:16:29 by Hibernate Tools 3.4.0.CR1
+// Generated 2012. 12. 31 오후 6:19:47 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -29,9 +29,9 @@ public class Portfolio implements java.io.Serializable {
 	private String level3;
 	private String level4;
 	private String level5;
-	private Set<PortfolioHis> portfolioHises = new HashSet<PortfolioHis>(0);
 	private Set<Portfolio> portfolios = new HashSet<Portfolio>(0);
 	private Set<PositionHis> positionHises = new HashSet<PositionHis>(0);
+	private Set<PortfolioHis> portfolioHises = new HashSet<PortfolioHis>(0);
 
 	public Portfolio() {
 	}
@@ -41,8 +41,8 @@ public class Portfolio implements java.io.Serializable {
 	}
 
 	public Portfolio(String id, Portfolio portfolio, String name, String level1, String level2,
-			String level3, String level4, String level5, Set<PortfolioHis> portfolioHises,
-			Set<Portfolio> portfolios, Set<PositionHis> positionHises) {
+			String level3, String level4, String level5, Set<Portfolio> portfolios,
+			Set<PositionHis> positionHises, Set<PortfolioHis> portfolioHises) {
 		this.id = id;
 		this.portfolio = portfolio;
 		this.name = name;
@@ -51,9 +51,9 @@ public class Portfolio implements java.io.Serializable {
 		this.level3 = level3;
 		this.level4 = level4;
 		this.level5 = level5;
-		this.portfolioHises = portfolioHises;
 		this.portfolios = portfolios;
 		this.positionHises = positionHises;
+		this.portfolioHises = portfolioHises;
 	}
 
 	@Id
@@ -131,15 +131,6 @@ public class Portfolio implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "portfolio")
-	public Set<PortfolioHis> getPortfolioHises() {
-		return this.portfolioHises;
-	}
-
-	public void setPortfolioHises(Set<PortfolioHis> portfolioHises) {
-		this.portfolioHises = portfolioHises;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "portfolio")
 	public Set<Portfolio> getPortfolios() {
 		return this.portfolios;
 	}
@@ -155,6 +146,15 @@ public class Portfolio implements java.io.Serializable {
 
 	public void setPositionHises(Set<PositionHis> positionHises) {
 		this.positionHises = positionHises;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "portfolio")
+	public Set<PortfolioHis> getPortfolioHises() {
+		return this.portfolioHises;
+	}
+
+	public void setPortfolioHises(Set<PortfolioHis> portfolioHises) {
+		this.portfolioHises = portfolioHises;
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.eugene.element;
 
-// Generated 2012. 12. 20 오후 5:18:49 by Hibernate Tools 3.4.0.CR1
+// Generated 2012. 12. 31 오후 6:07:13 by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -33,7 +33,7 @@ public class PortfolioDetailId implements java.io.Serializable {
 		this.bssd = bssd;
 	}
 
-	@Column(name = "PORTFOLIO_ID", nullable = false, length = 30)
+	@Column(name = "PORTFOLIO_ID", nullable = false, length = 50)
 	public String getPortfolioId() {
 		return this.portfolioId;
 	}
@@ -42,7 +42,7 @@ public class PortfolioDetailId implements java.io.Serializable {
 		this.portfolioId = portfolioId;
 	}
 
-	@Column(name = "POSITION_ID", nullable = false, length = 30)
+	@Column(name = "POSITION_ID", nullable = false, length = 100)
 	public String getPositionId() {
 		return this.positionId;
 	}
@@ -61,31 +61,21 @@ public class PortfolioDetailId implements java.io.Serializable {
 		PortfolioDetailId castOther = (PortfolioDetailId) other;
 
 		return ((this.getBssd() == castOther.getBssd()) || (this.getBssd() != null
-				&& castOther.getBssd() != null && this.getBssd().equals(
-				castOther.getBssd())))
-				&& ((this.getPortfolioId() == castOther.getPortfolioId()) || (this
-						.getPortfolioId() != null
-						&& castOther.getPortfolioId() != null && this
-						.getPortfolioId().equals(castOther.getPortfolioId())))
-				&& ((this.getPositionId() == castOther.getPositionId()) || (this
-						.getPositionId() != null
-						&& castOther.getPositionId() != null && this
-						.getPositionId().equals(castOther.getPositionId())));
+				&& castOther.getBssd() != null && this.getBssd().equals(castOther.getBssd())))
+				&& ((this.getPortfolioId() == castOther.getPortfolioId()) || (this.getPortfolioId() != null
+						&& castOther.getPortfolioId() != null && this.getPortfolioId().equals(
+						castOther.getPortfolioId())))
+				&& ((this.getPositionId() == castOther.getPositionId()) || (this.getPositionId() != null
+						&& castOther.getPositionId() != null && this.getPositionId().equals(
+						castOther.getPositionId())));
 	}
 
 	public int hashCode() {
 		int result = 17;
 
-		result = 37 * result
-				+ (getBssd() == null ? 0 : this.getBssd().hashCode());
-		result = 37
-				* result
-				+ (getPortfolioId() == null ? 0 : this.getPortfolioId()
-						.hashCode());
-		result = 37
-				* result
-				+ (getPositionId() == null ? 0 : this.getPositionId()
-						.hashCode());
+		result = 37 * result + (getBssd() == null ? 0 : this.getBssd().hashCode());
+		result = 37 * result + (getPortfolioId() == null ? 0 : this.getPortfolioId().hashCode());
+		result = 37 * result + (getPositionId() == null ? 0 : this.getPositionId().hashCode());
 		return result;
 	}
 

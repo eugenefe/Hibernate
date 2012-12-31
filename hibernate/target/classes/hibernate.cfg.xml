@@ -11,14 +11,16 @@
   <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
   
   <mapping class="com.eugene.element.BaseDate"/>
+  <mapping class="com.eugene.element.Obligor"/>
+  <mapping class="com.eugene.element.AccountMst"/>
   <mapping class="com.eugene.element.Product"/>
   <mapping class="com.eugene.element.Dealer"/>
   <mapping class="com.eugene.element.LgdSeg"/>
   <mapping class="com.eugene.element.PdSeg"/>
   
   <mapping class="com.eugene.element.Portfolio"/>
-  <mapping class="com.eugene.element.PortfolioDeatilId"/>
-  <mapping class="com.eugene.element.PortfolioDeatil"/>
+  <mapping class="com.eugene.element.PortfolioDetailId"/>
+  <mapping class="com.eugene.element.PortfolioDetail"/>
   <mapping class="com.eugene.element.PortfolioHisId"/>
   <mapping class="com.eugene.element.PortfolioHis"/>
   <mapping class="com.eugene.element.PortfolioLossId"/>
