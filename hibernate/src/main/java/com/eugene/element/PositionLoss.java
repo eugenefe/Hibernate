@@ -33,7 +33,11 @@ public class PositionLoss implements java.io.Serializable {
 		this.id = id;
 		this.positionHis = positionHis;
 	}
-
+	public PositionLoss(PositionLossId id, BigDecimal lossAmt,BigDecimal lossProb) {
+		this.id = id;
+		this.lossAmt = lossAmt;
+		this.lossProb = lossProb;
+	}
 	public PositionLoss(PositionLossId id, PositionHis positionHis, BigDecimal lossAmt,
 			BigDecimal lossProb) {
 		this.id = id;

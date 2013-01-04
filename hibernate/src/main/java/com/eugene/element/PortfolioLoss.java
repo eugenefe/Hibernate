@@ -42,6 +42,12 @@ public class PortfolioLoss implements java.io.Serializable {
 		this.lossProb = lossProb;
 	}
 
+	public PortfolioLoss(PortfolioLossId id, BigDecimal lossAmt, BigDecimal lossProb) {
+		this.id = id;
+		this.lossAmt = lossAmt;
+		this.lossProb = lossProb;
+	}
+
 	@EmbeddedId
 	@AttributeOverrides({
 			@AttributeOverride(name = "bssd", column = @Column(name = "BSSD", nullable = false, length = 8)),

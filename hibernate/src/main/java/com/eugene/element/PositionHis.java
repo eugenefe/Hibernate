@@ -3,7 +3,9 @@ package com.eugene.element;
 // Generated 2012. 12. 31 ¿ÀÈÄ 6:19:47 by Hibernate Tools 3.4.0.CR1
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -29,7 +31,8 @@ public class PositionHis implements java.io.Serializable {
 	private Position position;
 	private BigDecimal holdQty;
 	private BigDecimal posAmt;
-	private Set<PositionLoss> positionLosses = new HashSet<PositionLoss>(0);
+//	private Set<PositionLoss> positionLosses = new HashSet<PositionLoss>(0);
+	private List<PositionLoss> positionLosses = new ArrayList<PositionLoss>();
 	private Set<Portfolio> portfolios = new HashSet<Portfolio>(0);
 
 	public PositionHis() {
@@ -41,7 +44,7 @@ public class PositionHis implements java.io.Serializable {
 	}
 
 	public PositionHis(PositionHisId id, Position position, BigDecimal holdQty, BigDecimal posAmt,
-			Set<PositionLoss> positionLosses, Set<Portfolio> portfolios) {
+			List<PositionLoss> positionLosses, Set<Portfolio> portfolios) {
 		this.id = id;
 		this.position = position;
 		this.holdQty = holdQty;
@@ -91,11 +94,11 @@ public class PositionHis implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "positionHis")
-	public Set<PositionLoss> getPositionLosses() {
+	public List<PositionLoss> getPositionLosses() {
 		return this.positionLosses;
 	}
 
-	public void setPositionLosses(Set<PositionLoss> positionLosses) {
+	public void setPositionLosses(List<PositionLoss> positionLosses) {
 		this.positionLosses = positionLosses;
 	}
 

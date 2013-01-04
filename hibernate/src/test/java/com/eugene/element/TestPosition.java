@@ -23,7 +23,9 @@ public class TestPosition {
 
 		List<PositionHis> posi = new ArrayList<PositionHis>();
 
-		Query qr = s.createQuery("from PositionHis a where a.posAmt < 10000"
+		Query qr = s.createQuery("select a from PositionHis a , PortfolioDetail b	" +
+				"	where a.id.positionId = b.id.positionId	" +
+				" 	and b.id.portfolioId ='PORT_IND_15'		"
 		// "where a.mvDataId =:param "
 		// + " and   a.baseDate <= :param3 "
 
@@ -35,9 +37,10 @@ public class TestPosition {
 
 		posi = qr.list();
 		
-		logger.debug("posi count:{}", posi.size());
 		for (PositionHis aa : posi) {
 			logger.debug("Position:{},{}", aa.getPositionLosses().size());
 		}
+		
+		logger.debug("posi count:{}", posi.size());
 	}
 }

@@ -1,5 +1,8 @@
 package com.eugene.math;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Fft {
 
     // compute the FFT of x[], assuming its length is a power of 2
@@ -104,6 +107,15 @@ public class Fft {
         return cconvolve(a, b);
     }
 
+    
+    public static Map<Integer,Double> convolveLoss(Complex[] x, Complex[] y, int unitSize){
+    	Map<Integer, Double> rst = new HashMap<Integer, Double>();
+    	Complex[] temp = convolve(x,y);
+    	for(int i=0; i<temp.length; i++){
+    		rst.put(new Integer(i*unitSize), new Double(temp[i].re()));
+    	}
+    	return rst;
+    }
     // display an array of Complex numbers to standard output
     public static void show(Complex[] x, String title) {
         System.out.println(title);
