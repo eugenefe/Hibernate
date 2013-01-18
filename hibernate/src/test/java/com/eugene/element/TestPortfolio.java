@@ -28,10 +28,10 @@ public class TestPortfolio {
 //		Set<PositionHis> posHis = new HashSet<PositionHis>();
 		List<String>ids =getPortfolioIds();
 		
-//		logger.debug("Return Size : {}", ids.size());
-//		for( String aa : ids){
-//			logger.debug("Ids: {} ", aa.toString());
-//		}
+		logger.debug("Return Size : {}", ids.size());
+		for( String aa : ids){
+			logger.debug("Ids: {} ", aa.toString());
+		}
 		
 		/*port = getPortfolio("PORT_IND_15_B2");
 		for(Portfolio bb : port){
@@ -39,11 +39,11 @@ public class TestPortfolio {
 		}*/
 		
 		
-		posHis = getPositionHis("PORT_IND_15_A2");
-		for(PositionHis cc : posHis){
-			logger.debug("PosiHis :{},{}", cc.getId().getPositionId(), cc.getPosAmt());
-		}
-		logger.debug("Return Size : {}", posHis.size());
+//		posHis = getPositionHis("PORT_IND_15_A2");
+//		for(PositionHis cc : posHis){
+//			logger.debug("PosiHis :{},{}", cc.getId().getPositionId(), cc.getPosAmt());
+//		}
+//		logger.debug("Return Size : {}", posHis.size());
 //		setPortfolioLoss();
 
 	}
@@ -101,7 +101,8 @@ public class TestPortfolio {
 		Query qr = s.createQuery("select distinct a.id from Portfolio a  "
 		// + " where a.portfolio.id = 'PORT_ACC_ROOT' "
 //				+ " WHERE a.id = 'PORT_IND_15_B2'"
-				+ " where a.level2 is not null"
+				+ " where a.level2 is not null" 
+				+ " AND a.id not like 'PORT_IND%D%'"
 		);
 		ids = qr.list();
 

@@ -42,7 +42,7 @@ public class TestPortfolioLoss {
 		int outCnt = 0;
 		double totAmt = 0;
 		Complex[] temp;
-		long unitSize =10000000;
+		long unitSize =100000000;
 		
 //		List<Portfolio> port = getPortfolio();
 //		List<PositionHis> posiHis = getPosition();
