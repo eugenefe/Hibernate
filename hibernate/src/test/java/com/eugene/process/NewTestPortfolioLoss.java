@@ -33,7 +33,8 @@ public class NewTestPortfolioLoss {
 	 
 	 public static void main(String[] args) {
 		 long unitSize =10000000;
-		 String id ="PORT_CM_C1%";
+		 String id ="COPY_PORT_CM_IND_22%";
+//		 String id ="FLAT_IND_23%";
 //		 writeRst(id, unitSize);
 		 writeRstAlt(id, unitSize);
 	 }
@@ -101,7 +102,9 @@ public class NewTestPortfolioLoss {
 			posiHis = getPositionHis(aa);
 			logger.debug("Size :{} {}", aa, posiHis.size());
 			fftProduct = new LossFftProduct((int) unitSize);
-
+			if(posiHis.size() > 0) {
+				
+			
 			for (PositionHis kk : posiHis) {
 				cnt = cnt + 1;
 				totAmt = totAmt + kk.getPosAmt().doubleValue();
@@ -125,6 +128,7 @@ public class NewTestPortfolioLoss {
 			posiHis = null;
 			fftProduct = null;
 			outCnt = 0;
+			}
 		}
 
 		double probSum = 0;
@@ -230,10 +234,15 @@ public class NewTestPortfolioLoss {
 				+ " where 1=1 "
 				// + " AND a.level2 is not null"
 				// + " and a.id LIKE 'PORT_IND_'"
-//				+ " AND a.level2 is not null" 
-				+ " AND a.id not like 'PORT_CM%D%'" 
+				+ " AND a.level2 is not null" 
+				+ " AND a.id not like 'COPY_PORT_CM_IND%D%'" 
 				+ " AND a.id like :param"
-//				+ " and a.id not in ('PORT_IND_10', 'PORT_IND_11', 'PORT_IND_12','PORT_IND_13','PORT_IND_14')"
+//				+ " AND a.id not like 'PORT_CM_IND_06%'" 
+//				+ " AND a.id not like 'PORT_CM_IND_10%'"
+//				+ " AND a.id not like 'PORT_CM_IND_12%'"
+//				+ " AND a.id not like 'PORT_CM_IND_16%'"
+//				+ " AND a.id not like 'PORT_CM_IND_20%'"
+//				+ " AND a.id not like 'PORT_CM_IND_21%'"
 				+ " ORDER BY a.id");
 		qr.setParameter("param", id);
 		ids = qr.list();

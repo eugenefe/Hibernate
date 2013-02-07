@@ -31,7 +31,8 @@ public class TestNestedPortfolioLoss {
 		long unitSize = 100000000;
 		//측정하고자 하는 portfolio 의 부모 포트폴리오임
 //		 String testId = "PORT_IND_ROOT";
-		String testId = "PORT_IND_ROOT";
+//		String testId = "PORT_CM_ROOT";
+		String testId = "COPY_PORT_CM_ROOT";
 		
 		String bssd = "20120930";
 		writeNestedPortRst(testId, unitSize, bssd);
@@ -48,15 +49,14 @@ public class TestNestedPortfolioLoss {
 			ids = getPortfolioIds(parentId);
 
 			LossFftProduct fftProduct = new LossFftProduct((int) unitSize);
-
+			
 			for (String aa : ids) {
 				List<PortfolioLoss> portLoss = getPortfolioLoss(aa);
 
-				// for(SortedMap.Entry<Double, Double> xx : convertToMap(portLoss,unitSize).entrySet()){
-				// logger.debug("{},{}", xx.getKey(), xx.getValue() );
-				// }
-				logger.debug("{}", aa);
-				fftProduct.convoulution(convertToMap(portLoss, unitSize));
+				logger.debug("{},{}", aa, portLoss.size());
+				if(portLoss.size()>0){
+					fftProduct.convoulution(convertToMap(portLoss, unitSize));
+				}
 
 				// logger.debug("Port: {},{}", aa,//
 				// fftProduct.getImLoss().length);
@@ -127,7 +127,7 @@ public class TestNestedPortfolioLoss {
 
 		Query qr = s.createQuery("select distinct a.id from Portfolio a  " + " where a.portfolio.id LIKE :param "
 		// + " and a.portfolio.id <> 'PORT_IND_ROOT'"
-				+ " and a.id NOT LIKE 'PORT_IND_%D%' " 
+				+ " and a.id NOT LIKE 'PORT_CM_IND%D%' " 
 				+ " order by a.id"
 		// + " WHERE a.id =  'PORT_IND_'"
 				);
@@ -147,12 +147,14 @@ public class TestNestedPortfolioLoss {
 				+ " where 1=1 "
 				+ " and a.portfolio.id = :param" 
 //				+ " and a.portfolio.id is null"
-				+ " and a.id like 'PORT_IND_25%'"
+//				+ " and a.id like 'PORT_CM_IND_22%'"
+//				+ " and a.id LIKE 'PORT_CM_IND%'"
+				+ " and a.id LIKE 'COPY_PORT_CM_IND_22%'"
 				+ " order by a.id"
 //		  + " WHERE a.id =  'PORT_IND_ROOT'"
 				);
 		 qr.setParameter("param", testId);
-
+		 
 		parentIds = qr.list();
 
 		return parentIds;
