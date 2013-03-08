@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.org/schema/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.org/schema/seam/pages http://jboss.org/schema/seam/pages-2.3.xsd">
+
+   <param name="firstResult" value="#{positionList.firstResult}"/>
+   <param name="sort" value="#{positionList.orderColumn}"/>
+   <param name="dir" value="#{positionList.orderDirection}"/>
+   <param name="logic" value="#{positionList.restrictionLogicOperator}"/>
+
+   <param name="from"/>
+   <param name="id" value="#{positionList.position.id}"/>
+   <param name="name" value="#{positionList.position.name}"/>
+   <param name="productId" value="#{positionList.position.productId}"/>
+   <param name="dealerId" value="#{positionList.position.dealerId}"/>
+
+</page>

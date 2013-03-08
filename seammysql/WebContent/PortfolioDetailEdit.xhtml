@@ -1,0 +1,103 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.org/schema/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="portfolioDetail" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{portfolioDetailHome.managed ? 'Edit' : 'Add'} Portfolio detail</f:facet>
+
+
+            <s:decorate id="bssdField" template="layout/edit.xhtml">
+                <ui:define name="label">Bssd</ui:define>
+                <h:inputText id="bssd"
+                       disabled="#{portfolioDetailHome.managed}"
+                      required="true"
+                          size="8"
+                     maxlength="8"
+                         value="#{portfolioDetailHome.instance.id.bssd}">
+                    <a:ajax event="blur" render="bssdField" bypassUpdates="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <s:decorate id="portfolioIdField" template="layout/edit.xhtml">
+                <ui:define name="label">Portfolio id</ui:define>
+                <h:inputText id="portfolioId"
+                       disabled="#{portfolioDetailHome.managed}"
+                      required="true"
+                          size="50"
+                     maxlength="50"
+                         value="#{portfolioDetailHome.instance.id.portfolioId}">
+                    <a:ajax event="blur" render="portfolioIdField" bypassUpdates="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <s:decorate id="positionIdField" template="layout/edit.xhtml">
+                <ui:define name="label">Position id</ui:define>
+                <h:inputText id="positionId"
+                       disabled="#{portfolioDetailHome.managed}"
+                      required="true"
+                          size="50"
+                     maxlength="50"
+                         value="#{portfolioDetailHome.instance.id.positionId}">
+                    <a:ajax event="blur" render="positionIdField" bypassUpdates="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{portfolioDetailHome.persist}"
+                       disabled="#{!portfolioDetailHome.wired}"
+                       rendered="#{!portfolioDetailHome.managed}">
+                <s:conversationId/>
+            </h:commandButton>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{portfolioDetailHome.update}"
+                       rendered="#{portfolioDetailHome.managed}">
+                <s:conversationId/>
+            </h:commandButton>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{portfolioDetailHome.remove}"
+                      immediate="true"
+                       rendered="#{portfolioDetailHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/PortfolioDetail.xhtml"
+                rendered="#{portfolioDetailHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty portfolioDetailFrom ? 'PortfolioDetailList' : portfolioDetailFrom}.xhtml"
+                rendered="#{!portfolioDetailHome.managed}"/>
+
+        </div>
+    </h:form>
+
+</ui:define>
+
+</ui:composition>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.org/schema/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.org/schema/seam/pages http://jboss.org/schema/seam/pages-2.3.xsd"
+      no-conversation-view-id="/PortfolioDetailList.xhtml"
+      login-required="true">
+
+   <begin-conversation join="true" flush-mode="MANUAL"/>
+
+   <action execute="#{portfolioDetailHome.wire}"/>
+
+   <param name="portfolioDetailFrom"/>
+   <param name="portfolioDetailBssd" value="#{portfolioDetailHome.portfolioDetailId.bssd}"/>
+   <param name="portfolioDetailPortfolioId" value="#{portfolioDetailHome.portfolioDetailId.portfolioId}"/>
+   <param name="portfolioDetailPositionId" value="#{portfolioDetailHome.portfolioDetailId.positionId}"/>
+
+
+   <navigation from-action="#{portfolioDetailHome.persist}">
+      <rule if-outcome="persisted">
+         <end-conversation/>
+         <redirect view-id="/PortfolioDetail.xhtml"/>
+      </rule>
+   </navigation>
+
+   <navigation from-action="#{portfolioDetailHome.update}">
+      <rule if-outcome="updated">
+         <end-conversation/>
+         <redirect view-id="/PortfolioDetail.xhtml"/>
+      </rule>
+   </navigation>
+
+   <navigation from-action="#{portfolioDetailHome.remove}">
+      <rule if-outcome="removed">
+         <end-conversation/>
+         <redirect view-id="/PortfolioDetailList.xhtml"/>
+      </rule>
+   </navigation>
+
+</page>

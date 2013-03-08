@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.org/schema/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.org/schema/seam/pages http://jboss.org/schema/seam/pages-2.3.xsd">
+
+   <param name="firstResult" value="#{baseDateList.firstResult}"/>
+   <param name="sort" value="#{baseDateList.orderColumn}"/>
+   <param name="dir" value="#{baseDateList.orderDirection}"/>
+   <param name="logic" value="#{baseDateList.restrictionLogicOperator}"/>
+
+   <param name="from"/>
+   <param name="bssd" value="#{baseDateList.baseDate.bssd}"/>
+   <param name="prevBssd" value="#{baseDateList.baseDate.prevBssd}"/>
+   <param name="nextBssd" value="#{baseDateList.baseDate.nextBssd}"/>
+   <param name="eomBssd" value="#{baseDateList.baseDate.eomBssd}"/>
+
+</page>

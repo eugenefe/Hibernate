@@ -1,0 +1,101 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.org/schema/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="product" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{productHome.managed ? 'Edit' : 'Add'} Product</f:facet>
+
+
+            <s:decorate id="idField" template="layout/edit.xhtml">
+                <ui:define name="label">Id</ui:define>
+                <h:inputText id="id"
+                       disabled="#{productHome.managed}"
+                       required="true"
+                           size="50"
+                      maxlength="50"
+                          value="#{productHome.instance.id}">
+                    <a:ajax event="blur" render="idField" bypassUpdates="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="nameField" template="layout/edit.xhtml">
+                <ui:define name="label">Name</ui:define>
+                <h:inputText id="name"
+                           size="50"
+                      maxlength="50"
+                          value="#{productHome.instance.name}">
+                    <a:ajax event="blur" render="nameField" bypassUpdates="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="typeField" template="layout/edit.xhtml">
+                <ui:define name="label">Type</ui:define>
+                <h:inputText id="type"
+                           size="10"
+                      maxlength="10"
+                          value="#{productHome.instance.type}">
+                    <a:ajax event="blur" render="typeField" bypassUpdates="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{productHome.persist}"
+                       disabled="#{!productHome.wired}"
+                       rendered="#{!productHome.managed}">
+                <s:conversationId/>
+            </h:commandButton>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{productHome.update}"
+                       rendered="#{productHome.managed}">
+                <s:conversationId/>
+            </h:commandButton>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{productHome.remove}"
+                      immediate="true"
+                       rendered="#{productHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/Product.xhtml"
+                rendered="#{productHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty productFrom ? 'ProductList' : productFrom}.xhtml"
+                rendered="#{!productHome.managed}"/>
+
+        </div>
+    </h:form>
+
+</ui:define>
+
+</ui:composition>

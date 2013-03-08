@@ -1,0 +1,170 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.org/schema/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="portfolioDetailSearch" styleClass="edit">
+
+        <rich:collapsiblePanel header="PortfolioDetail Search Filter" switchType="ajax">
+
+            <s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Bssd</ui:define>
+                <h:inputText id="bssd" value="#{portfolioDetailList.portfolioDetail.id.bssd}"/>
+            </s:decorate>
+
+            <s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Portfolio id</ui:define>
+                <h:inputText id="portfolioId" value="#{portfolioDetailList.portfolioDetail.id.portfolioId}"/>
+            </s:decorate>
+
+            <s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Position id</ui:define>
+                <h:inputText id="positionId" value="#{portfolioDetailList.portfolioDetail.id.positionId}"/>
+            </s:decorate>
+
+            <s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Match</ui:define>
+                <h:selectOneRadio id="logic" value="#{portfolioDetailList.restrictionLogicOperator}" styleClass="radio">
+                    <f:selectItem itemLabel="All" itemValue="and"/>
+                    <f:selectItem itemLabel="Any" itemValue="or"/>
+                </h:selectOneRadio>
+            </s:decorate>
+
+        </rich:collapsiblePanel>
+
+        <div class="actionButtons">
+            <h:commandButton id="search" value="Search" action="/PortfolioDetailList.xhtml"/>
+            <s:button id="reset" value="Reset" includePageParams="false"/>
+        </div>
+
+    </h:form>
+
+    <rich:panel>
+        <f:facet name="header">PortfolioDetail Search Results (#{empty portfolioDetailList.resultList ? 0 : (portfolioDetailList.paginated ? portfolioDetailList.resultCount : portfolioDetailList.resultList.size)})</f:facet>
+    <div class="results" id="portfolioDetailList">
+
+    <h:outputText value="The portfolioDetail search returned no results."
+               rendered="#{empty portfolioDetailList.resultList}"/>
+
+    <rich:dataTable id="portfolioDetailList"
+                var="_portfolioDetail"
+              value="#{portfolioDetailList.resultList}"
+           rendered="#{not empty portfolioDetailList.resultList}">
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{portfolioDetailList}"/>
+                    <ui:param name="propertyLabel" value="Bssd"/>
+                    <ui:param name="propertyPath" value="portfolioDetail.id.bssd"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_portfolioDetail.id.bssd}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{portfolioDetailList}"/>
+                    <ui:param name="propertyLabel" value="Portfolio id"/>
+                    <ui:param name="propertyPath" value="portfolioDetail.id.portfolioId"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_portfolioDetail.id.portfolioId}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{portfolioDetailList}"/>
+                    <ui:param name="propertyLabel" value="Position id"/>
+                    <ui:param name="propertyPath" value="portfolioDetail.id.positionId"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_portfolioDetail.id.positionId}"/>
+        </h:column>
+        <rich:column styleClass="action">
+            <f:facet name="header">Action</f:facet>
+            <s:link view="/#{empty from ? 'PortfolioDetail' : from}.xhtml"
+                   value="#{empty from ? 'View' : 'Select'}"
+             propagation="#{empty from ? 'none' : 'default'}"
+                      id="portfolioDetailViewId">
+                <f:param name="portfolioDetailBssd"
+                        value="#{_portfolioDetail.id.bssd}"/>
+                <f:param name="portfolioDetailPortfolioId"
+                        value="#{_portfolioDetail.id.portfolioId}"/>
+                <f:param name="portfolioDetailPositionId"
+                        value="#{_portfolioDetail.id.positionId}"/>
+            </s:link>
+            #{' '}
+            <s:link view="/PortfolioDetailEdit.xhtml"
+                   value="Edit"
+             propagation="none"
+                      id="portfolioDetailEdit"
+                rendered="#{empty from}">
+                <f:param name="portfolioDetailBssd"
+                        value="#{_portfolioDetail.id.bssd}"/>
+                <f:param name="portfolioDetailPortfolioId"
+                        value="#{_portfolioDetail.id.portfolioId}"/>
+                <f:param name="portfolioDetailPositionId"
+                        value="#{_portfolioDetail.id.positionId}"/>
+            </s:link>
+        </rich:column>
+    </rich:dataTable>
+
+    </div>
+    </rich:panel>
+
+    <div class="tableControl">
+
+        <s:link view="/PortfolioDetailList.xhtml"
+            rendered="#{portfolioDetailList.previousExists}"
+               value="#{messages.left}#{messages.left} First Page"
+                  id="firstPage">
+          <f:param name="firstResult" value="0"/>
+        </s:link>
+
+        <s:link view="/PortfolioDetailList.xhtml"
+            rendered="#{portfolioDetailList.previousExists}"
+               value="#{messages.left} Previous Page"
+                  id="previousPage">
+            <f:param name="firstResult"
+                    value="#{portfolioDetailList.previousFirstResult}"/>
+        </s:link>
+
+        <s:link view="/PortfolioDetailList.xhtml"
+            rendered="#{portfolioDetailList.nextExists}"
+               value="Next Page #{messages.right}"
+                  id="nextPage">
+            <f:param name="firstResult"
+                    value="#{portfolioDetailList.nextFirstResult}"/>
+        </s:link>
+
+        <s:link view="/PortfolioDetailList.xhtml"
+            rendered="#{portfolioDetailList.nextExists}"
+               value="Last Page #{messages.right}#{messages.right}"
+                  id="lastPage">
+            <f:param name="firstResult"
+                    value="#{portfolioDetailList.lastFirstResult}"/>
+        </s:link>
+
+    </div>
+
+    <s:div styleClass="actionButtons" rendered="#{empty from}">
+        <s:button view="/PortfolioDetailEdit.xhtml"
+                    id="create"
+           propagation="none"
+                 value="Create portfolioDetail">
+            <f:param name="portfolioDetailBssd"/>
+            <f:param name="portfolioDetailPortfolioId"/>
+            <f:param name="portfolioDetailPositionId"/>
+        </s:button>
+    </s:div>
+
+</ui:define>
+
+</ui:composition>

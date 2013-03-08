@@ -1,0 +1,114 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.org/schema/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="position" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{positionHome.managed ? 'Edit' : 'Add'} Position</f:facet>
+
+
+            <s:decorate id="idField" template="layout/edit.xhtml">
+                <ui:define name="label">Id</ui:define>
+                <h:inputText id="id"
+                       disabled="#{positionHome.managed}"
+                       required="true"
+                           size="50"
+                      maxlength="50"
+                          value="#{positionHome.instance.id}">
+                    <a:ajax event="blur" render="idField" bypassUpdates="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="nameField" template="layout/edit.xhtml">
+                <ui:define name="label">Name</ui:define>
+                <h:inputText id="name"
+                           size="50"
+                      maxlength="50"
+                          value="#{positionHome.instance.name}">
+                    <a:ajax event="blur" render="nameField" bypassUpdates="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="productIdField" template="layout/edit.xhtml">
+                <ui:define name="label">Product id</ui:define>
+                <h:inputText id="productId"
+                       required="true"
+                           size="50"
+                      maxlength="50"
+                          value="#{positionHome.instance.productId}">
+                    <a:ajax event="blur" render="productIdField" bypassUpdates="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="dealerIdField" template="layout/edit.xhtml">
+                <ui:define name="label">Dealer id</ui:define>
+                <h:inputText id="dealerId"
+                       required="true"
+                           size="50"
+                      maxlength="50"
+                          value="#{positionHome.instance.dealerId}">
+                    <a:ajax event="blur" render="dealerIdField" bypassUpdates="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{positionHome.persist}"
+                       disabled="#{!positionHome.wired}"
+                       rendered="#{!positionHome.managed}">
+                <s:conversationId/>
+            </h:commandButton>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{positionHome.update}"
+                       rendered="#{positionHome.managed}">
+                <s:conversationId/>
+            </h:commandButton>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{positionHome.remove}"
+                      immediate="true"
+                       rendered="#{positionHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/Position.xhtml"
+                rendered="#{positionHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty positionFrom ? 'PositionList' : positionFrom}.xhtml"
+                rendered="#{!positionHome.managed}"/>
+
+        </div>
+    </h:form>
+
+</ui:define>
+
+</ui:composition>
